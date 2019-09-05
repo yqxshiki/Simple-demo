@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+ * @Description: 
+ * @Autor: YuBiao
+ * @Date: 2019-09-05 14:30:47
+ -->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>五子棋</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #cccccc;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .game {
+            position: relative;
+            width: 640px;
+            height: 640px;
+            margin: auto;
+            margin-top: 20px;
+            background: url('./images/cross.png'), url('./images/bak.jpg');
+        }
+
+        .game .chess {
+            position: absolute;
+            width: 36px;
+            height: 36px;
+        }
+
+        .game .black {
+            background: url('./images/black.png');
+        }
+
+        .game .white {
+            background: url('./images/white.png');
+        }
+
+        .title {
+            position: absolute;
+            top: 50%;
+            font-family: sans-serif;
+            font-weight: bold;
+            left: 50px;
+            font-size: 30px;
+        }
+
+        button {
+            position: absolute;
+            left: 100px;
+            top: 60%;
+            font-size: 20px;
+            text-align: center;
+            font-family: sans-serif;
+            font-weight: bold;
+            background: #521d1d;
+            color: #ffffff;
+            box-shadow: 0 5px 8px black;
+            cursor: pointer;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game">
+    </div>
+    <div class="title">欢迎你来玩五子棋</div>
+    <p>
+        <button>重新开始游戏</button>
+    </p>
+    <script src="./index.js"></script>
+
+</body>
+
+</html>
