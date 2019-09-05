@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+ * @Description: 
+ * @Autor: YuBiao
+ * @Date: 2019-09-05 09:22:12
+ -->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Carousel--simple</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 400px;
+            height: 400px;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+
+        .container .wrap {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+        }
+
+        .container .wrap img {
+            width: 800px;
+            height: 400px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrap">
+            <img src="../images/1.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        window.onload = function () {
+            var img = document.querySelector('img');
+            // console.log(img)
+            var len = 1;
+
+            setInterval(() => {
+                len++;
+                if (len > 8) {
+                    len = 1;
+                }
+                img.src = '../images/' + len + '.jpg';
+                // img.setAttribute('src', '../images/' + len + '.jpg')
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>

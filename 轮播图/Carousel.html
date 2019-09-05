@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!--
+ * @Description: 
+ * @Autor: YuBiao
+ * @Date: 2019-09-05 10:31:12
+ -->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Carousel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 600px;
+            height: 500px;
+            margin-top: 100px;
+            position: relative;
+        }
+
+        .container .wrap img {
+            width: 600px;
+            height: 400px;
+            position: absolute;
+            border: 1px solid black;
+        }
+
+        .container .circle {
+            display: flex;
+            position: absolute;
+            top: 410px;
+            left: 160px;
+        }
+
+        .container .circle li {
+            z-index: 1;
+            color: #ffffff;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #888;
+            text-align: center;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .container .circle li:nth-child(1) {
+            background: rgb(19, 138, 242);
+        }
+
+        .container .chose {
+            position: absolute;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .container .left {
+            left: -100px;
+            top: 180px;
+        }
+
+        .container .right {
+            right: -100px;
+            top: 180px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrap">
+            <img src="../images/1.jpg" alt="">
+        </div>
+        <ul class="circle">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+        </ul>
+        <div class="left chose">&lt;</div>
+        <div class="right chose">&gt;</div>
+    </div>
+    <script>
+        window.onload = function () {
+            var container = document.querySelector('.container');
+            var img = document.querySelector('img');
+
+            var circl = document.getElementsByClassName('circle')[0];
+
+            var lis = document.querySelectorAll('.circle>li');
+
+            var left = document.querySelector('.left');
+            var right = document.querySelector('.right');
+
+            var len = -1;
+            var timer = setInterval(de, 3000);
+
+            //调用定时器 使得图片 3s 正向轮转一次
+            function de() {
+                len++;
+                carousel();
+            }
+            de();
+            /**
+             *将图片轮播
+             */
+            function carousel() {
+                if (len >= 8) {
+                    len = 0;
+                }
+                if (len <= -1) {
+                    len = 7;
+                }
+                // len = len - 1;
+                img.src = '../images/' + (len + 1) + '.jpg ';
+                console.log(img.src);
+
+                //清除掉当前所有的小圆点背景
+                for (let i = 0; i < lis.length; i++) {
+                    lis[i].style.background = '#888';
+                }
+
+                //将当前显示图片对应的小圆点变色
+                lis[len].style.background = 'rgb(19, 138, 242)';
+
+            }
+
+            //鼠标移入时，停止轮播，显示按钮
+            container.addEventListener('mousemove', function () {
+                clearInterval(timer);
+                // left.style.display = 'block';
+                // right.style.display = 'block';
+            }, false)
+
+            //鼠标移出时，停止轮播，隐藏按钮
+            container.addEventListener('mouseout', function () {
+                timer = setInterval(de, 3000);
+                // left.style.display = 'none';
+                // right.style.display = 'none';
+            }, false)
+
+            //点击按钮，换图片
+            left.addEventListener('click', function () {
+                // console.log(1);
+                len--;
+                carousel();
+            })
+            right.addEventListener('click', function () {
+                // console.log(1);
+                len++;
+                carousel();
+            })
+
+            //点击按钮 ，显示对应下标的图片
+            for (let i = 0; i < lis.length; i++) {
+                lis[i].addEventListener('click', function () {
+                    img.src = '../images/' + (i + 1) + '.jpg';
+                }, false)
+            }
+        }
+    </script>
+</body>
+
+</html>
